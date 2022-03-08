@@ -9,6 +9,10 @@ namespace tpmodul3_1302202072
 
             table_Kodepos.getKodepos("Batununggal");
             table_Kodepos.getAllkodepos();
+
+
+            DoorMachine pintu = new DoorMachine();
+            pintu.kunci();
             
             
         }
@@ -47,6 +51,41 @@ namespace tpmodul3_1302202072
                 {
                     Console.WriteLine("{0} \t\t {1}", ele1.Key, ele1.Value);
                 }
+        }
+    }
+
+
+    class DoorMachine
+    {
+        enum State { TERKUNCI, TERBUKA};
+        public void kunci()
+        {
+            State state = State.TERKUNCI;
+
+            String[] screenName = { "TERKUNCI", "TERBUKA"};
+            do
+            {
+                Console.WriteLine("PINTU " + screenName[(int)state] );
+                Console.Write("Enter Command : ");
+                String command = Console.ReadLine();
+                switch (state) {
+                    case State.TERKUNCI:
+                        if(command == "BukaPintu")
+                        {
+                            state = State.TERBUKA;
+                        }
+                        break;
+                    case State.TERBUKA:
+                        if(command == "KunciPintu")
+                        {
+                            state = State.TERKUNCI;
+                        }
+                        break;
+
+                
+                
+                }
+            }while(state != State.TERKUNCI);
         }
     }
 
